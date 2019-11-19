@@ -1,7 +1,7 @@
 version: '3'
 services:
     telegraf:
-        build: telegraf
+        image: telegraf
         volumes:
           - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
         # - /tmp/telegraf:/tmp/telegraf # For debugging purpose

@@ -1,0 +1,22 @@
+version: '3'
+services:
+    telegraf:
+        build: telegraf
+        volumes:
+          - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+        # - /tmp/telegraf:/tmp/telegraf # For debugging purpose
+        ports:
+            - 50007:50007
+
+    influxdb:
+        image: influxdb
+        volumes:
+          - ./influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
+        ports:
+          - 8086
+
+    chronograf:
+        image: chronograf:alpine
+        command: --influxdb-url=http://influxdb:8086
+        ports:
+            - 8888:8888

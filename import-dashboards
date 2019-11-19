@@ -1,0 +1,15 @@
+#/bin/bash
+
+if ! [ -z "$1" ] && ! [ -z "$2" ] && ! [ -z "$3" ]; then
+    echo "Usage: $0 [CHRONOGRAF_IP] [CHRONOGRAF_PORT]"
+	exit
+fi
+
+HOST=${1-localhost}
+PORT=${2:-8888}
+
+for filename in ./dashboards/*.json; do
+    echo -e "Importing dashboard $filename..."
+    STATUS_CODE=$(cat "$filename" | jq ".dashboard" | curl -s -o /dev/null -w "%{http_code}" -X POST -H "Content-Type: application/json" http://$HOST:$PORT/chronograf/v1/dashboards -d @-)
+    echo -e "Request done with status code $STATUS_CODE"
+done

@@ -1,0 +1,1229 @@
+{
+	"meta": {
+		"chronografVersion": "1.7.8",
+		"sources": {
+			"0": {
+				"name": "http://influxdb:8086",
+				"link": "/chronograf/v1/sources/0"
+			}
+		}
+	},
+	"dashboard": {
+		"id": 7,
+		"cells": [
+			{
+				"i": "ec255d2d-0ff9-44ad-b7d3-f6bb1d59c917",
+				"x": 8,
+				"y": 12,
+				"w": 4,
+				"h": 4,
+				"name": "BGP EVPN L2VPN Routes",
+				"queries": [
+					{
+						"query": "SELECT sum(\"prefixreceived\") AS \"Prefix received\" FROM \"mdt_realtime\".\"autogen\".\"show bgp l2vpn evpn summary/TABLE_neighbor\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-sspine/ GROUP BY time(5s), \"Producer\" FILL(none)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT sum(\"prefixreceived\") AS \"Prefix received\" FROM \"mdt_realtime\".\"autogen\".\"show bgp l2vpn evpn summary/TABLE_neighbor\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-sspine/ GROUP BY time(5s), \"Producer\" FILL(none)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "c7903049-2017-40a5-ae30-45ec98255dc7",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "db0ffbce-ec9a-495f-9439-d5b3f241a8e5",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "eb3694c3-1319-4ac7-b10d-3c5b69c471b1",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/7/cells/ec255d2d-0ff9-44ad-b7d3-f6bb1d59c917"
+				}
+			},
+			{
+				"i": "1cdc0e03-a2a2-4f01-9592-8eb3bdde072e",
+				"x": 8,
+				"y": 8,
+				"w": 4,
+				"h": 4,
+				"name": "Total Traffic DC 2 | Room 1",
+				"queries": [
+					{
+						"query": "SELECT sum(\"Ingress traffic rate\") FROM (SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"='n9k-bleaf-5' GROUP BY \"TABLE_interface\") GROUP BY time(30s) FILL(none)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT sum(\"Ingress traffic rate\") FROM (SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"='n9k-bleaf-5' GROUP BY \"TABLE_interface\") GROUP BY time(30s) FILL(none)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "bps",
+						"base": "2",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-stepplot",
+				"colors": [
+					{
+						"id": "fc838e67-1e3f-4724-ba55-fbda6bf32abb",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "9c1ae436-9e4e-40a6-b55e-cd748e229865",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dbb2a646-3554-433b-8cdc-86b7b4ab0138",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/7/cells/1cdc0e03-a2a2-4f01-9592-8eb3bdde072e"
+				}
+			},
+			{
+				"i": "7f1dc7dd-20cd-4b4c-9fd8-256288eb4a55",
+				"x": 0,
+				"y": 8,
+				"w": 8,
+				"h": 4,
+				"name": "Ingress Traffic DC 2 | Room 1",
+				"queries": [
+					{
+						"query": "SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"='n9k-bleaf-5' GROUP BY \"TABLE_interface\"",
+						"queryConfig": {
+							"database": "mdt_realtime",
+							"measurement": "show interface/TABLE_interface",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "eth_inrate1_bits",
+									"type": "field",
+									"alias": "Ingress traffic rate"
+								}
+							],
+							"tags": {
+								"Producer": [
+									"n9k-bleaf-5"
+								]
+							},
+							"groupBy": {
+								"time": "",
+								"tags": [
+									"TABLE_interface"
+								]
+							},
+							"areTagsAccepted": true,
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "bps",
+						"base": "2",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "fc838e67-1e3f-4724-ba55-fbda6bf32abb",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "9c1ae436-9e4e-40a6-b55e-cd748e229865",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dbb2a646-3554-433b-8cdc-86b7b4ab0138",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/7/cells/7f1dc7dd-20cd-4b4c-9fd8-256288eb4a55"
+				}
+			},
+			{
+				"i": "35124b89-abd1-4843-9f71-a594ae84c19a",
+				"x": 8,
+				"y": 4,
+				"w": 4,
+				"h": 4,
+				"name": "Total Traffic DC 1 | Room 2",
+				"queries": [
+					{
+						"query": "SELECT sum(\"Ingress traffic rate\") FROM (SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface ethernet1/1-52/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-leaf-[7-8]/ GROUP BY \"TABLE_interface\", \"Producer\") GROUP BY time(30s) FILL(none)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT sum(\"Ingress traffic rate\") FROM (SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface ethernet1/1-52/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-leaf-[7-8]/ GROUP BY \"TABLE_interface\", \"Producer\") GROUP BY time(30s) FILL(none)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "bps",
+						"base": "2",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-stepplot",
+				"colors": [
+					{
+						"id": "fc838e67-1e3f-4724-ba55-fbda6bf32abb",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "9c1ae436-9e4e-40a6-b55e-cd748e229865",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dbb2a646-3554-433b-8cdc-86b7b4ab0138",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/7/cells/35124b89-abd1-4843-9f71-a594ae84c19a"
+				}
+			},
+			{
+				"i": "99eb53b9-4895-4378-b60b-3113e3c26a9d",
+				"x": 0,
+				"y": 4,
+				"w": 8,
+				"h": 4,
+				"name": "Ingress Traffic DC 1 | Room 2",
+				"queries": [
+					{
+						"query": "SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface ethernet1/1-52/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-leaf-[7-8]/ GROUP BY \"TABLE_interface\", \"Producer\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface ethernet1/1-52/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-leaf-[7-8]/ GROUP BY \"TABLE_interface\", \"Producer\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "bps",
+						"base": "2",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "fc838e67-1e3f-4724-ba55-fbda6bf32abb",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "9c1ae436-9e4e-40a6-b55e-cd748e229865",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dbb2a646-3554-433b-8cdc-86b7b4ab0138",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/7/cells/99eb53b9-4895-4378-b60b-3113e3c26a9d"
+				}
+			},
+			{
+				"i": "efa8514d-374b-4912-8699-2764bcb0dfbd",
+				"x": 8,
+				"y": 0,
+				"w": 4,
+				"h": 4,
+				"name": "Total Traffic DC 1 | Room 1",
+				"queries": [
+					{
+						"query": "SELECT sum(\"Ingress traffic rate\") FROM (SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface ethernet1/1-52/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-leaf-[1-6]/ GROUP BY \"TABLE_interface\", \"Producer\") GROUP BY time(30s) FILL(none)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT sum(\"Ingress traffic rate\") FROM (SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface ethernet1/1-52/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-leaf-[1-6]/ GROUP BY \"TABLE_interface\", \"Producer\") GROUP BY time(30s) FILL(none)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "bps",
+						"base": "2",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-stepplot",
+				"colors": [
+					{
+						"id": "fc838e67-1e3f-4724-ba55-fbda6bf32abb",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "9c1ae436-9e4e-40a6-b55e-cd748e229865",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dbb2a646-3554-433b-8cdc-86b7b4ab0138",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/7/cells/efa8514d-374b-4912-8699-2764bcb0dfbd"
+				}
+			},
+			{
+				"i": "ebb71d97-f0d6-4780-b4ad-f5f4fc1f3b1d",
+				"x": 0,
+				"y": 14,
+				"w": 4,
+				"h": 2,
+				"name": "L3VNI",
+				"queries": [
+					{
+						"query": "SELECT count(distinct(\"vni\")) AS \"VNI\" FROM \"mdt_realtime\".\"autogen\".\"sys/eps/epId-1/nws/nvoNws//nvoOperNw\" WHERE time > :dashboardTime: AND \"type\"='L3' AND \"state\"='Up' AND \"Producer\"=~/n9k-leaf/ GROUP BY time(120s) FILL(previous)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT count(distinct(\"vni\")) AS \"VNI\" FROM \"mdt_realtime\".\"autogen\".\"sys/eps/epId-1/nws/nvoNws//nvoOperNw\" WHERE time > :dashboardTime: AND \"type\"='L3' AND \"state\"='Up' AND \"Producer\"=~/n9k-leaf/ GROUP BY time(120s) FILL(previous)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "fb37847a-1a8f-40b0-ab62-914e4b3c76a8",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d255c58e-e807-4c11-a9c1-7aa6791f87ab",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "sys/eps/epId-1/nws/nvoNws//nvoOperNw.count",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/7/cells/ebb71d97-f0d6-4780-b4ad-f5f4fc1f3b1d"
+				}
+			},
+			{
+				"i": "62ae0689-9b77-4bdc-958d-c655c8c697a4",
+				"x": 0,
+				"y": 12,
+				"w": 4,
+				"h": 2,
+				"name": "L2VNI",
+				"queries": [
+					{
+						"query": "SELECT count(distinct(\"vni\")) AS \"VNI\" FROM \"mdt_realtime\".\"autogen\".\"sys/eps/epId-1/nws/nvoNws//nvoOperNw\" WHERE time > :dashboardTime: AND \"type\"='L2' AND \"state\"='Up' AND \"Producer\"=~/n9k-leaf/ GROUP BY time(120s) FILL(previous)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT count(distinct(\"vni\")) AS \"VNI\" FROM \"mdt_realtime\".\"autogen\".\"sys/eps/epId-1/nws/nvoNws//nvoOperNw\" WHERE time > :dashboardTime: AND \"type\"='L2' AND \"state\"='Up' AND \"Producer\"=~/n9k-leaf/ GROUP BY time(120s) FILL(previous)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "fb37847a-1a8f-40b0-ab62-914e4b3c76a8",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d255c58e-e807-4c11-a9c1-7aa6791f87ab",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "sys/eps/epId-1/nws/nvoNws//nvoOperNw.count",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/7/cells/62ae0689-9b77-4bdc-958d-c655c8c697a4"
+				}
+			},
+			{
+				"i": "b1687800-e473-4ca6-b65f-e97431dc2540",
+				"x": 4,
+				"y": 12,
+				"w": 4,
+				"h": 4,
+				"name": "BGP Neighbors",
+				"queries": [
+					{
+						"query": "SELECT count(\"TABLE_neighbor\") AS \"Number of Neighbors\" FROM (SELECT last(\"state\") AS \"test\" FROM \"mdt_realtime\".\"autogen\".\"show bgp sessions/TABLE_neighbor\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-sspine/ AND \"state\"='Established' GROUP BY \"Producer\", \"TABLE_neighbor\") GROUP BY  time(10s), \"Producer\" FILL(none)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT count(\"TABLE_neighbor\") AS \"Number of Neighbors\" FROM (SELECT last(\"state\") AS \"test\" FROM \"mdt_realtime\".\"autogen\".\"show bgp sessions/TABLE_neighbor\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-sspine/ AND \"state\"='Established' GROUP BY \"Producer\", \"TABLE_neighbor\") GROUP BY  time(10s), \"Producer\" FILL(none)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "236ff0a5-3a3f-470f-913d-cf21774196c5",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "5bc4a60a-3599-433a-b7ba-054a4a7e19ec",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "7374e0a6-bc01-456e-b418-956556a674ff",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {
+					"type": "static",
+					"orientation": "bottom"
+				},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": false
+					},
+					{
+						"internalName": "Producer",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "show bgp sessions/TABLE_neighbor.count",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/7/cells/b1687800-e473-4ca6-b65f-e97431dc2540"
+				}
+			},
+			{
+				"i": "72cb3cf2-468e-491c-a0c2-a837d302823f",
+				"x": 0,
+				"y": 0,
+				"w": 8,
+				"h": 4,
+				"name": "Ingress Traffic DC 1 | Room 1",
+				"queries": [
+					{
+						"query": "SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface ethernet1/1-52/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-leaf-[1-6]/ GROUP BY \"TABLE_interface\", \"Producer\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface ethernet1/1-52/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=~/n9k-leaf-[1-6]/ GROUP BY \"TABLE_interface\", \"Producer\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "bps",
+						"base": "2",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "fc838e67-1e3f-4724-ba55-fbda6bf32abb",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "9c1ae436-9e4e-40a6-b55e-cd748e229865",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "dbb2a646-3554-433b-8cdc-86b7b4ab0138",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/7/cells/72cb3cf2-468e-491c-a0c2-a837d302823f"
+				}
+			}
+		],
+		"templates": [],
+		"name": "VXLAN EVPN Fabric",
+		"organization": "default",
+		"links": {
+			"self": "/chronograf/v1/dashboards/7",
+			"cells": "/chronograf/v1/dashboards/7/cells",
+			"templates": "/chronograf/v1/dashboards/7/templates"
+		}
+	}
+}

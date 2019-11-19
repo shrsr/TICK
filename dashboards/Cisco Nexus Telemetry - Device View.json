@@ -1,0 +1,1395 @@
+{
+	"meta": {
+		"chronografVersion": "1.7.8",
+		"sources": {
+			"0": {
+				"name": "http://influxdb:8086",
+				"link": "/chronograf/v1/sources/0"
+			}
+		}
+	},
+	"dashboard": {
+		"id": 2,
+		"cells": [
+			{
+				"i": "9a8595f4-3291-4521-b5c2-dfabf23af3a0",
+				"x": 0,
+				"y": 3,
+				"w": 8,
+				"h": 3,
+				"name": "Total Ingress Traffic",
+				"queries": [
+					{
+						"query": "SELECT sum(\"Unicast traffic\") AS \"Global Unicast traffic\" FROM (SELECT NON_NEGATIVE_DERIVATIVE(mean(\"eth_inucast\"), 1s) AS \"Unicast traffic\" FROM \"mdt_realtime\".\"autogen\".\"show interface/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY time(20s), \"TABLE_interface\" FILL(none)) GROUP BY time(5s) FILL(linear)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT sum(\"Unicast traffic\") AS \"Global Unicast traffic\" FROM (SELECT NON_NEGATIVE_DERIVATIVE(mean(\"eth_inucast\"), 1s) AS \"Unicast traffic\" FROM \"mdt_realtime\".\"autogen\".\"show interface/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY time(20s), \"TABLE_interface\" FILL(none)) GROUP BY time(5s) FILL(linear)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					},
+					{
+						"query": "SELECT sum(\"Multicast traffic\") AS \"Global Multicast traffic\" FROM (SELECT NON_NEGATIVE_DERIVATIVE(mean(\"eth_inmcast\"), 1s) AS \"Multicast traffic\" FROM \"mdt_realtime\".\"autogen\".\"show interface/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY time(20s), \"TABLE_interface\" FILL(none)) GROUP BY time(5s) FILL(linear)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT sum(\"Multicast traffic\") AS \"Global Multicast traffic\" FROM (SELECT NON_NEGATIVE_DERIVATIVE(mean(\"eth_inmcast\"), 1s) AS \"Multicast traffic\" FROM \"mdt_realtime\".\"autogen\".\"show interface/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY time(20s), \"TABLE_interface\" FILL(none)) GROUP BY time(5s) FILL(linear)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "Datarate",
+						"prefix": "",
+						"suffix": "pkt/s",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-stacked",
+				"colors": [
+					{
+						"id": "ff009195-a2e3-4905-9244-2a64c9e2ddf2",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d4dc3ea2-ff74-447c-8707-8592a92a80d4",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "635eb0dc-3fdb-4ab3-9f68-760d43f3f2ba",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/9a8595f4-3291-4521-b5c2-dfabf23af3a0"
+				}
+			},
+			{
+				"i": "3ef62499-0d29-428a-967a-8807575c9875",
+				"x": 6,
+				"y": 11,
+				"w": 4,
+				"h": 2,
+				"name": "ISIS Adjacencies",
+				"queries": [
+					{
+						"query": "SELECT count(\"State\") FROM (SELECT last(\"adj-state-out\") AS \"State\" FROM \"mdt_realtime\".\"autogen\".\"show isis adjacency/TABLE_process_adj\" WHERE time > :dashboardTime: AND \"Producer\"=:device: AND \"adj-state-out\"='UP' GROUP BY \"TABLE_process_adj\") GROUP BY time(:interval:) FILL(none)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT count(\"State\") FROM (SELECT last(\"adj-state-out\") AS \"State\" FROM \"mdt_realtime\".\"autogen\".\"show isis adjacency/TABLE_process_adj\" WHERE time > :dashboardTime: AND \"Producer\"=:device: AND \"adj-state-out\"='UP' GROUP BY \"TABLE_process_adj\") GROUP BY time(:interval:) FILL(none)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "5adc21d6-9464-42b1-8203-8938969c7411",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "e68d03a7-2284-4008-a6ba-00ec0a173e69",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "show isis adjacency/TABLE_process_adj.count",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/3ef62499-0d29-428a-967a-8807575c9875"
+				}
+			},
+			{
+				"i": "0449d3ab-c5a8-4376-9ff4-1b179125d6bf",
+				"x": 0,
+				"y": 6,
+				"w": 6,
+				"h": 3,
+				"name": "Egress traffic",
+				"queries": [
+					{
+						"query": "SELECT \"eth_outrate1_bits\" AS \"Egress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY \"TABLE_interface\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"eth_outrate1_bits\" AS \"Egress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY \"TABLE_interface\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "Datarate",
+						"prefix": "",
+						"suffix": "bps",
+						"base": "2",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "ff009195-a2e3-4905-9244-2a64c9e2ddf2",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d4dc3ea2-ff74-447c-8707-8592a92a80d4",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "635eb0dc-3fdb-4ab3-9f68-760d43f3f2ba",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/0449d3ab-c5a8-4376-9ff4-1b179125d6bf"
+				}
+			},
+			{
+				"i": "e584a091-6089-40ef-8e02-fe77427ecf34",
+				"x": 8,
+				"y": 0,
+				"w": 4,
+				"h": 2,
+				"name": "CPU Temperature (Mean Supervisor Slots)",
+				"queries": [
+					{
+						"query": "SELECT mean(\"tempValue\") AS \"CPU Temperature\" FROM \"mdt_realtime\".\"autogen\".\"sys/ch/eqptCh//eqptSupCSlot//eqptSupC//eqptSensor\" WHERE time > :dashboardTime: AND \"Producer\"=:device:",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT mean(\"tempValue\") AS \"CPU Temperature\" FROM \"mdt_realtime\".\"autogen\".\"sys/ch/eqptCh//eqptSupCSlot//eqptSupC//eqptSensor\" WHERE time > :dashboardTime: AND \"Producer\"=:device:",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "°C",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "gauge",
+				"colors": [
+					{
+						"id": "0",
+						"type": "min",
+						"hex": "#4ED8A0",
+						"name": "rainforest",
+						"value": "0"
+					},
+					{
+						"id": "5a9ffe18-0245-4c3f-ba23-fdc97d897448",
+						"type": "threshold",
+						"hex": "#F48D38",
+						"name": "tiger",
+						"value": "80"
+					},
+					{
+						"id": "bc0fc6f5-2f4f-4fd9-a647-7145dd677f75",
+						"type": "threshold",
+						"hex": "#BF3D5E",
+						"name": "ruby",
+						"value": "90"
+					},
+					{
+						"id": "1",
+						"type": "max",
+						"hex": "#9394FF",
+						"name": "comet",
+						"value": "100"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/e584a091-6089-40ef-8e02-fe77427ecf34"
+				}
+			},
+			{
+				"i": "2eaebe21-ce60-4589-a64c-ee88bbba8cd2",
+				"x": 8,
+				"y": 2,
+				"w": 4,
+				"h": 4,
+				"name": "Temperature Sensors (Supervisor Slots)",
+				"queries": [
+					{
+						"query": "SELECT \"tempValue\" AS \"Temperature\" FROM \"mdt_realtime\".\"autogen\".\"sys/ch/eqptCh//eqptSupCSlot//eqptSupC//eqptSensor\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY \"eqptCh//eqptSupCSlot//eqptSupC//eqptSensor\", \"eqptCh//eqptSupCSlot\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"tempValue\" AS \"Temperature\" FROM \"mdt_realtime\".\"autogen\".\"sys/ch/eqptCh//eqptSupCSlot//eqptSupC//eqptSensor\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY \"eqptCh//eqptSupCSlot//eqptSupC//eqptSensor\", \"eqptCh//eqptSupCSlot\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "Temperature",
+						"prefix": "",
+						"suffix": "°C",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "a7052a0b-8dec-417d-b639-e2f5db257b40",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "df7cd5f5-660c-43c6-a91d-109264ee008c",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "911e9b24-64a2-4028-8546-ec6f1291cc77",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "sys/ch/eqptCh//eqptSupCSlot//eqptSupC//eqptSensor.last_model",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "eqptCh//eqptSupCSlot//eqptSupC//eqptSensor",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "sys/ch/eqptCh//eqptSupCSlot//eqptSupC//eqptSensor.mean_tempValue",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/2eaebe21-ce60-4589-a64c-ee88bbba8cd2"
+				}
+			},
+			{
+				"i": "7dfaedf5-543c-4808-be0f-685e0a9ccfc1",
+				"x": 5,
+				"y": 0,
+				"w": 3,
+				"h": 3,
+				"name": "Memory Usage",
+				"queries": [
+					{
+						"query": "SELECT last(\"used\") / last(\"total\") * 100 AS \"Memory Used (Percent)\" FROM \"mdt_realtime\".\"autogen\".\"sys/procsys/procSystem//procSysMem\" WHERE time > :dashboardTime: AND \"Producer\"=:device:",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT last(\"used\") / last(\"total\") * 100 AS \"Memory Used (Percent)\" FROM \"mdt_realtime\".\"autogen\".\"sys/procsys/procSystem//procSysMem\" WHERE time > :dashboardTime: AND \"Producer\"=:device:",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "%",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "gauge",
+				"colors": [
+					{
+						"id": "0",
+						"type": "min",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "0"
+					},
+					{
+						"id": "1",
+						"type": "max",
+						"hex": "#9394FF",
+						"name": "comet",
+						"value": "100"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "sys/procsys/procSystem//procSysMem.last_used",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/7dfaedf5-543c-4808-be0f-685e0a9ccfc1"
+				}
+			},
+			{
+				"i": "b1601a53-8906-4455-b1bb-6fb5efbe34b6",
+				"x": 0,
+				"y": 0,
+				"w": 5,
+				"h": 3,
+				"name": "CPU Usage",
+				"queries": [
+					{
+						"query": "SELECT \"kernel\", \"user\" FROM \"mdt_realtime\".\"autogen\".\"sys/procsys/procSystem//procSysCpuSummary\" WHERE time > :dashboardTime: AND \"Producer\"=:device:",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"kernel\", \"user\" FROM \"mdt_realtime\".\"autogen\".\"sys/procsys/procSystem//procSysCpuSummary\" WHERE time > :dashboardTime: AND \"Producer\"=:device:",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "CPU Usage",
+						"prefix": "",
+						"suffix": "%",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-stacked",
+				"colors": [
+					{
+						"id": "a7052a0b-8dec-417d-b639-e2f5db257b40",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "df7cd5f5-660c-43c6-a91d-109264ee008c",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "911e9b24-64a2-4028-8546-ec6f1291cc77",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {
+					"type": "static",
+					"orientation": "bottom"
+				},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "Could not query time-series data. Please ensure Telemetry data is correctly stored in InfluxDB and dashboard variable are set correctly.",
+				"noteVisibility": "showWhenNoData",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/b1601a53-8906-4455-b1bb-6fb5efbe34b6"
+				}
+			},
+			{
+				"i": "c739bbab-d4a6-4c41-9430-cee68f3c0542",
+				"x": 0,
+				"y": 9,
+				"w": 6,
+				"h": 2,
+				"name": "BGP Neighbors",
+				"queries": [
+					{
+						"query": "SELECT last(\"state\") AS \"State\", last(\"connectionsdropped\") AS \"Flaps\", last(\"remoteas\") AS \"ASN\" FROM \"mdt_realtime\".\"autogen\".\"show bgp sessions/TABLE_neighbor\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY \"TABLE_neighbor\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT last(\"state\") AS \"State\", last(\"connectionsdropped\") AS \"Flaps\", last(\"remoteas\") AS \"ASN\" FROM \"mdt_realtime\".\"autogen\".\"show bgp sessions/TABLE_neighbor\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY \"TABLE_neighbor\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "table",
+				"colors": [
+					{
+						"id": "base",
+						"type": "text",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "-1000000000000000000"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "sys/bgp/inst/bgpInst//bgpDom//bgpPeer//bgpPeerEntry.Router ID",
+						"displayName": "Router ID",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": false
+					},
+					{
+						"internalName": "TABLE_neighbor",
+						"displayName": "Neighbor",
+						"visible": true
+					},
+					{
+						"internalName": "show bgp sessions/TABLE_neighbor.State",
+						"displayName": "State",
+						"visible": true
+					},
+					{
+						"internalName": "show bgp sessions/TABLE_neighbor.ASN",
+						"displayName": "ASN",
+						"visible": true
+					},
+					{
+						"internalName": "show bgp sessions/TABLE_neighbor.Flaps",
+						"displayName": "Flaps",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/c739bbab-d4a6-4c41-9430-cee68f3c0542"
+				}
+			},
+			{
+				"i": "463604ae-a0f5-486a-af0a-91056fd99daf",
+				"x": 6,
+				"y": 6,
+				"w": 6,
+				"h": 3,
+				"name": "Ingress traffic",
+				"queries": [
+					{
+						"query": "SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY \"TABLE_interface\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"eth_inrate1_bits\" AS \"Ingress traffic rate\" FROM \"mdt_realtime\".\"autogen\".\"show interface/TABLE_interface\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY \"TABLE_interface\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "Datarate",
+						"prefix": "",
+						"suffix": "bps",
+						"base": "2",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "ff009195-a2e3-4905-9244-2a64c9e2ddf2",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d4dc3ea2-ff74-447c-8707-8592a92a80d4",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "635eb0dc-3fdb-4ab3-9f68-760d43f3f2ba",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/463604ae-a0f5-486a-af0a-91056fd99daf"
+				}
+			},
+			{
+				"i": "bb450f67-87a4-4143-a28e-beacef7082cf",
+				"x": 0,
+				"y": 11,
+				"w": 6,
+				"h": 4,
+				"name": "ISIS Adjacencies",
+				"queries": [
+					{
+						"query": "SELECT last(\"adj-intf-name-out\") AS \"Interface\", last(\"adj-state-out\") AS \"State\", last(\"adj-usage-out\") AS \"Level\" FROM \"mdt_realtime\".\"autogen\".\"show isis adjacency/TABLE_process_adj\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY \"TABLE_process_adj\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT last(\"adj-intf-name-out\") AS \"Interface\", last(\"adj-state-out\") AS \"State\", last(\"adj-usage-out\") AS \"Level\" FROM \"mdt_realtime\".\"autogen\".\"show isis adjacency/TABLE_process_adj\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY \"TABLE_process_adj\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "table",
+				"colors": [
+					{
+						"id": "base",
+						"type": "text",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "-1000000000000000000"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "TABLE_process_adj",
+						"displayName": "System ID",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": false
+					},
+					{
+						"internalName": "TABLE_process_adj",
+						"displayName": "System ID",
+						"visible": true
+					},
+					{
+						"internalName": "show isis adjacency/TABLE_process_adj.State",
+						"displayName": "State",
+						"visible": true
+					},
+					{
+						"internalName": "show isis adjacency/TABLE_process_adj.Level",
+						"displayName": "Level",
+						"visible": true
+					},
+					{
+						"internalName": "show isis adjacency/TABLE_process_adj.Interface",
+						"displayName": "Interface",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/bb450f67-87a4-4143-a28e-beacef7082cf"
+				}
+			},
+			{
+				"i": "d45fe0f9-a1ae-48d0-81d4-a1dbc812022b",
+				"x": 6,
+				"y": 9,
+				"w": 6,
+				"h": 2,
+				"name": "BGP EVPN L2VPN Prefixes",
+				"queries": [
+					{
+						"query": "SELECT sum(\"prefixreceived\") AS \"Prefix received\" FROM \"mdt_realtime\".\"autogen\".\"show bgp l2vpn evpn summary/TABLE_neighbor\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY time(:interval:) FILL(none)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT sum(\"prefixreceived\") AS \"Prefix received\" FROM \"mdt_realtime\".\"autogen\".\"show bgp l2vpn evpn summary/TABLE_neighbor\" WHERE time > :dashboardTime: AND \"Producer\"=:device: GROUP BY time(:interval:) FILL(none)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "42ecae7c-6ef1-4c14-a60c-e77be0cf9874",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "29a4360e-e141-46ba-a10d-badf2a7cc2d1",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/cells/d45fe0f9-a1ae-48d0-81d4-a1dbc812022b"
+				}
+			}
+		],
+		"templates": [
+			{
+				"tempVar": ":device:",
+				"values": [
+					{
+						"value": "n9k-bgw-1",
+						"type": "tagValue",
+						"selected": true
+					}
+				],
+				"id": "0e36fa91-4c83-420f-b2fd-359c39d9baac",
+				"type": "tagValues",
+				"label": "",
+				"query": {
+					"influxql": "SHOW TAG VALUES ON :database: FROM :measurement: WITH KEY=:tagKey:",
+					"db": "mdt_realtime",
+					"measurement": "show interface/TABLE_interface",
+					"tagKey": "Producer",
+					"fieldKey": ""
+				},
+				"links": {
+					"self": "/chronograf/v1/dashboards/2/templates/0e36fa91-4c83-420f-b2fd-359c39d9baac"
+				}
+			}
+		],
+		"name": "Cisco Nexus Telemetry - Device View",
+		"organization": "default",
+		"links": {
+			"self": "/chronograf/v1/dashboards/2",
+			"cells": "/chronograf/v1/dashboards/2/cells",
+			"templates": "/chronograf/v1/dashboards/2/templates"
+		}
+	}
+}
